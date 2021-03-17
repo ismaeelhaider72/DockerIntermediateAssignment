@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+
+  web01:
+    build: new/
+    ports:
+      - "8080:80"
+    depends_on:
+      - flask_app
+
+  flask_app:
+    build: .
+    volumes:
+      - .:/code
+    depends_on:
+      - redis
+
+  redis:
+      image: "redis:alpine" 
